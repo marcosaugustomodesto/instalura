@@ -5,18 +5,22 @@ import Login from './componentes/Login';
 import './css/reset.css';
 import './css/timeline.css';
 import './css/login.css';
-import {BrowserRouter as Router, Route,Switch,Link} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import {BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-const history = createBrowserHistory();
+
+function verificaAutenticacao(nextState, replace) {
+
+    if (localStorage.getItem('auth-token') == null) {
+        return <Redirect to='/' />;
+    } 
+}
 
 ReactDOM.render(
-	<Router history={history}>
+	<Router>
         <Switch>        
             <Route exact path="/" component={Login}/>
-            <Route path="/timeline" component={App}/>
+            <Route path="/timeline" component={App} />
         </Switch>            		
 	</Router>,	
 	document.getElementById('root')
 );
-

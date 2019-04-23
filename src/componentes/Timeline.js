@@ -16,12 +16,16 @@ export default class Timeline extends Component {
      });
    }
    render(){
-        return (
-          <div className="fotos container">
-            {
-              this.state.fotos.map(foto => <FotoItem key={foto} foto={foto}/>)
-            }          
-          </div>            
+       const _fotos = this.state.fotos;
+       let fotosMapeadas;
+       if(_fotos.length > 0) {
+          fotosMapeadas = _fotos.map(foto => <FotoItem key={foto} foto={foto}/>)
+       } 
+
+        return (          
+            <div className="fotos container">
+                  {fotosMapeadas}          
+            </div>            
         );
     }
 }
